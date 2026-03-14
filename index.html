@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IIoT Security Crossword</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f4f7fb;
+}
+
+h1{
+color:#2c3e50;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(5,50px);
+gap:5px;
+justify-content:center;
+margin-top:20px;
+}
+
+input{
+width:50px;
+height:50px;
+text-align:center;
+font-size:20px;
+text-transform:uppercase;
+}
+
+.black{
+background:black;
+}
+
+#question{
+margin-top:20px;
+font-size:18px;
+color:#1a5276;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+background:#3498db;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>IIoT Security Crossword</h1>
+
+<div class="grid">
+
+<input id="1" onclick="showQuestion(1)">
+<input id="2" onclick="showQuestion(1)">
+<input id="3" onclick="showQuestion(1)">
+<input id="4" onclick="showQuestion(1)">
+<input id="5" onclick="showQuestion(1)">
+
+<input id="6" onclick="showQuestion(2)">
+<input class="black" disabled>
+<input id="7" onclick="showQuestion(2)">
+<input class="black" disabled>
+<input id="8" onclick="showQuestion(2)">
+
+<input id="9" onclick="showQuestion(3)">
+<input id="10" onclick="showQuestion(3)">
+<input id="11" onclick="showQuestion(3)">
+<input id="12" onclick="showQuestion(3)">
+<input id="13" onclick="showQuestion(3)">
+
+</div>
+
+<div id="question">
+Click a box to see question
+</div>
+
+<button onclick="check()">Check Answers</button>
+
+<script>
+
+function showQuestion(num){
+
+if(num==1)
+document.getElementById("question").innerHTML=
+"1 Across: Protects data by converting it into code";
+
+if(num==2)
+document.getElementById("question").innerHTML=
+"2 Across: Confirms user identity";
+
+if(num==3)
+document.getElementById("question").innerHTML=
+"3 Across: Unauthorized attack on system";
+
+}
+
+function check(){
+
+let word1 =
+document.getElementById("1").value+
+document.getElementById("2").value+
+document.getElementById("3").value+
+document.getElementById("4").value+
+document.getElementById("5").value;
+
+let word2 =
+document.getElementById("6").value+
+document.getElementById("7").value+
+document.getElementById("8").value;
+
+let word3 =
+document.getElementById("9").value+
+document.getElementById("10").value+
+document.getElementById("11").value+
+document.getElementById("12").value+
+document.getElementById("13").value;
+
+if(word1.toUpperCase()=="CRYPT")
+alert("Question 1 correct");
+
+if(word2.toUpperCase()=="KEY")
+alert("Question 2 correct");
+
+if(word3.toUpperCase()=="ATTACK")
+alert("Question 3 correct");
+
+}
+
+</script>
+
+</body>
+</html>
