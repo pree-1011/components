@@ -12,10 +12,6 @@ background:#eef2f7;
 text-align:center;
 }
 
-h1{
-color:#1a5276;
-}
-
 .grid{
 
 display:grid;
@@ -40,12 +36,9 @@ text-transform:uppercase;
 background:black;
 }
 
-#question{
-
-margin-top:20px;
-font-size:18px;
-color:#154360;
-
+.cell:focus{
+background:#d4e6f1;
+outline:none;
 }
 
 button{
@@ -55,15 +48,6 @@ padding:10px 20px;
 background:#2e86c1;
 color:white;
 border:none;
-cursor:pointer;
-
-}
-
-#score{
-
-margin-top:15px;
-font-size:20px;
-color:#117864;
 
 }
 
@@ -73,11 +57,10 @@ color:#117864;
 
 <body>
 
-<h1>IIoT Security Crossword Puzzle</h1>
+<h1>IIoT Security Crossword</h1>
 
 <div class="grid">
 
-<!-- ENCRYPTION -->
 <input class="cell" id="1" onclick="q(1)">
 <input class="cell" id="2" onclick="q(1)">
 <input class="cell" id="3" onclick="q(1)">
@@ -89,7 +72,6 @@ color:#117864;
 <input class="cell" id="9" onclick="q(1)">
 <input class="cell" id="10" onclick="q(1)">
 
-<!-- SENSOR -->
 <input class="cell" id="11" onclick="q(2)">
 <input class="cell" id="12" onclick="q(2)">
 <input class="cell" id="13" onclick="q(2)">
@@ -101,7 +83,6 @@ color:#117864;
 <input class="block" disabled>
 <input class="block" disabled>
 
-<!-- KEY -->
 <input class="cell" id="17" onclick="q(3)">
 <input class="cell" id="18" onclick="q(3)">
 <input class="cell" id="19" onclick="q(3)">
@@ -113,7 +94,6 @@ color:#117864;
 <input class="block" disabled>
 <input class="block" disabled>
 
-<!-- HACKER -->
 <input class="cell" id="20" onclick="q(4)">
 <input class="cell" id="21" onclick="q(4)">
 <input class="cell" id="22" onclick="q(4)">
@@ -128,7 +108,7 @@ color:#117864;
 </div>
 
 <div id="question">
-Click a box to see the question
+Click box to see question
 </div>
 
 <button onclick="check()">Check Answers</button>
@@ -140,59 +120,66 @@ Click a box to see the question
 function q(n){
 
 if(n==1)
-document.getElementById("question").innerHTML=
-"1 Across: Process of converting data into secret code";
+question.innerHTML="1: Process of converting data into secret code";
 
 if(n==2)
-document.getElementById("question").innerHTML=
-"2 Across: Device that collects industrial data";
+question.innerHTML="2: Industrial data collection device";
 
 if(n==3)
-document.getElementById("question").innerHTML=
-"3 Across: Used in encryption to lock data";
+question.innerHTML="3: Used to lock encrypted data";
 
 if(n==4)
-document.getElementById("question").innerHTML=
-"4 Across: Person who tries to break security";
+question.innerHTML="4: Person who breaks security";
 
 }
+
+let inputs=document.querySelectorAll(".cell");
+
+inputs.forEach((box,index)=>{
+
+box.addEventListener("keyup",function(e){
+
+if(this.value.length==1 && index<inputs.length-1)
+inputs[index+1].focus();
+
+if(e.key=="ArrowRight")
+inputs[index+1].focus();
+
+if(e.key=="ArrowLeft")
+inputs[index-1].focus();
+
+if(e.key=="ArrowDown")
+inputs[index+10]?.focus();
+
+if(e.key=="ArrowUp")
+inputs[index-10]?.focus();
+
+if(e.key=="Backspace" && this.value=="")
+inputs[index-1]?.focus();
+
+});
+
+});
 
 function check(){
 
 let score=0;
 
-let w1=
-document.getElementById("1").value+
-document.getElementById("2").value+
-document.getElementById("3").value+
-document.getElementById("4").value+
-document.getElementById("5").value+
-document.getElementById("6").value+
-document.getElementById("7").value+
-document.getElementById("8").value+
-document.getElementById("9").value+
-document.getElementById("10").value;
+let w1="";
+for(let i=1;i<=10;i++)
+w1+=document.getElementById(i).value;
 
-let w2=
-document.getElementById("11").value+
-document.getElementById("12").value+
-document.getElementById("13").value+
-document.getElementById("14").value+
-document.getElementById("15").value+
-document.getElementById("16").value;
+let w2="";
+for(let i=11;i<=16;i++)
+w2+=document.getElementById(i).value;
 
-let w3=
-document.getElementById("17").value+
-document.getElementById("18").value+
-document.getElementById("19").value;
+let w3="";
+for(let i=17;i<=19;i++)
+w3+=document.getElementById(i).value;
 
-let w4=
-document.getElementById("20").value+
-document.getElementById("21").value+
-document.getElementById("22").value+
-document.getElementById("23").value+
-document.getElementById("24").value+
-document.getElementById("25").value;
+let w4="";
+for(let i=20;i<=25;i++)
+w4+=document.getElementById(i).value;
 
 if(w1.toUpperCase()=="ENCRYPTION")
 score++;
@@ -207,7 +194,7 @@ if(w4.toUpperCase()=="HACKER")
 score++;
 
 document.getElementById("score").innerHTML=
-"Score : "+score+" / 4";
+"Score : "+score+"/4";
 
 }
 
