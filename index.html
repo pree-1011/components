@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>IIoT Security Crossword</title>
 
@@ -7,48 +8,63 @@
 
 body{
 font-family:Arial;
+background:#eef2f7;
 text-align:center;
-background:#f4f7fb;
 }
 
 h1{
-color:#2c3e50;
+color:#1a5276;
 }
 
 .grid{
+
 display:grid;
-grid-template-columns:repeat(5,50px);
-gap:5px;
+grid-template-columns:repeat(10,40px);
+gap:4px;
 justify-content:center;
 margin-top:20px;
+
 }
 
-input{
-width:50px;
-height:50px;
+.cell{
+
+width:40px;
+height:40px;
+font-size:18px;
 text-align:center;
-font-size:20px;
 text-transform:uppercase;
+
 }
 
-.black{
+.block{
 background:black;
 }
 
 #question{
+
 margin-top:20px;
 font-size:18px;
-color:#1a5276;
+color:#154360;
+
 }
 
 button{
+
 margin-top:20px;
 padding:10px 20px;
-background:#3498db;
-border:none;
+background:#2e86c1;
 color:white;
-font-size:16px;
+border:none;
 cursor:pointer;
+
+}
+
+#score{
+
+margin-top:15px;
+font-size:20px;
+color:#117864;
+
 }
 
 </style>
@@ -57,87 +73,146 @@ cursor:pointer;
 
 <body>
 
-<h1>IIoT Security Crossword</h1>
+<h1>IIoT Security Crossword Puzzle</h1>
 
 <div class="grid">
 
-<input id="1" onclick="showQuestion(1)">
-<input id="2" onclick="showQuestion(1)">
-<input id="3" onclick="showQuestion(1)">
-<input id="4" onclick="showQuestion(1)">
-<input id="5" onclick="showQuestion(1)">
+<!-- ENCRYPTION -->
+<input class="cell" id="1" onclick="q(1)">
+<input class="cell" id="2" onclick="q(1)">
+<input class="cell" id="3" onclick="q(1)">
+<input class="cell" id="4" onclick="q(1)">
+<input class="cell" id="5" onclick="q(1)">
+<input class="cell" id="6" onclick="q(1)">
+<input class="cell" id="7" onclick="q(1)">
+<input class="cell" id="8" onclick="q(1)">
+<input class="cell" id="9" onclick="q(1)">
+<input class="cell" id="10" onclick="q(1)">
 
-<input id="6" onclick="showQuestion(2)">
-<input class="black" disabled>
-<input id="7" onclick="showQuestion(2)">
-<input class="black" disabled>
-<input id="8" onclick="showQuestion(2)">
+<!-- SENSOR -->
+<input class="cell" id="11" onclick="q(2)">
+<input class="cell" id="12" onclick="q(2)">
+<input class="cell" id="13" onclick="q(2)">
+<input class="cell" id="14" onclick="q(2)">
+<input class="cell" id="15" onclick="q(2)">
+<input class="cell" id="16" onclick="q(2)">
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
 
-<input id="9" onclick="showQuestion(3)">
-<input id="10" onclick="showQuestion(3)">
-<input id="11" onclick="showQuestion(3)">
-<input id="12" onclick="showQuestion(3)">
-<input id="13" onclick="showQuestion(3)">
+<!-- KEY -->
+<input class="cell" id="17" onclick="q(3)">
+<input class="cell" id="18" onclick="q(3)">
+<input class="cell" id="19" onclick="q(3)">
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+
+<!-- HACKER -->
+<input class="cell" id="20" onclick="q(4)">
+<input class="cell" id="21" onclick="q(4)">
+<input class="cell" id="22" onclick="q(4)">
+<input class="cell" id="23" onclick="q(4)">
+<input class="cell" id="24" onclick="q(4)">
+<input class="cell" id="25" onclick="q(4)">
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
+<input class="block" disabled>
 
 </div>
 
 <div id="question">
-Click a box to see question
+Click a box to see the question
 </div>
 
 <button onclick="check()">Check Answers</button>
 
+<div id="score"></div>
+
 <script>
 
-function showQuestion(num){
+function q(n){
 
-if(num==1)
+if(n==1)
 document.getElementById("question").innerHTML=
-"1 Across: Protects data by converting it into code";
+"1 Across: Process of converting data into secret code";
 
-if(num==2)
+if(n==2)
 document.getElementById("question").innerHTML=
-"2 Across: Confirms user identity";
+"2 Across: Device that collects industrial data";
 
-if(num==3)
+if(n==3)
 document.getElementById("question").innerHTML=
-"3 Across: Unauthorized attack on system";
+"3 Across: Used in encryption to lock data";
+
+if(n==4)
+document.getElementById("question").innerHTML=
+"4 Across: Person who tries to break security";
 
 }
 
 function check(){
 
-let word1 =
+let score=0;
+
+let w1=
 document.getElementById("1").value+
 document.getElementById("2").value+
 document.getElementById("3").value+
 document.getElementById("4").value+
-document.getElementById("5").value;
-
-let word2 =
+document.getElementById("5").value+
 document.getElementById("6").value+
 document.getElementById("7").value+
-document.getElementById("8").value;
-
-let word3 =
+document.getElementById("8").value+
 document.getElementById("9").value+
-document.getElementById("10").value+
+document.getElementById("10").value;
+
+let w2=
 document.getElementById("11").value+
 document.getElementById("12").value+
-document.getElementById("13").value;
+document.getElementById("13").value+
+document.getElementById("14").value+
+document.getElementById("15").value+
+document.getElementById("16").value;
 
-if(word1.toUpperCase()=="CRYPT")
-alert("Question 1 correct");
+let w3=
+document.getElementById("17").value+
+document.getElementById("18").value+
+document.getElementById("19").value;
 
-if(word2.toUpperCase()=="KEY")
-alert("Question 2 correct");
+let w4=
+document.getElementById("20").value+
+document.getElementById("21").value+
+document.getElementById("22").value+
+document.getElementById("23").value+
+document.getElementById("24").value+
+document.getElementById("25").value;
 
-if(word3.toUpperCase()=="ATTACK")
-alert("Question 3 correct");
+if(w1.toUpperCase()=="ENCRYPTION")
+score++;
+
+if(w2.toUpperCase()=="SENSOR")
+score++;
+
+if(w3.toUpperCase()=="KEY")
+score++;
+
+if(w4.toUpperCase()=="HACKER")
+score++;
+
+document.getElementById("score").innerHTML=
+"Score : "+score+" / 4";
 
 }
 
 </script>
 
 </body>
+
 </html>
